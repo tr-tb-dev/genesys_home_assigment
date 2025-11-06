@@ -1,48 +1,76 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
+import { AppBar, Toolbar, Button, Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import classNames from 'classnames'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle'
-import styles from './Navigation.module.scss'
+import LanguageSelector from '@/components/LanguageSelector/LanguageSelector'
 
 function Navigation() {
   const theme = useTheme()
-
-  const navStyles = {
-    '--nav-bg': theme.palette.navigation.background,
-    '--nav-text': theme.palette.navigation.text,
-    '--nav-hover': theme.palette.navigation.hover,
-    '--nav-active': theme.palette.navigation.active,
-  }
-
-  const getLinkClassName = ({ isActive }) =>
-    classNames(styles.menuLink, {
-      [styles.active]: isActive,
-    })
+  const location = useLocation()
 
   return (
-    <nav className={styles.navigation} style={navStyles}>
-      <div className={styles.leftSection}>
-        <Link to="/" className={styles.logo}>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: theme.palette.navigation.background,
+        borderBottom: `2px solid ${theme.palette.navigation.active}`,
+      }}
+    >
+      <Toolbar>
+        <Button
+          component={Link}
+          to="/"
+          variant="outlined"
+          sx={{
+            fontWeight: 'bold',
+            fontSize: '1.25rem',
+            letterSpacing: 2,
+            color: theme.palette.navigation.text,
+            borderColor: theme.palette.navigation.text,
+            marginRight: 4,
+          }}
+        >
           HN
-        </Link>
-        <ul className={styles.menuList}>
-          <li className={styles.menuItem}>
-            <NavLink to="/" className={getLinkClassName} end>
-              <FormattedMessage id="navigation.newPosts" />
-            </NavLink>
-          </li>
-          <li className={styles.menuItem}>
-            <NavLink to="/top" className={getLinkClassName}>
-              <FormattedMessage id="navigation.topPosts" />
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.rightSection}>
-        <ThemeToggle />
-      </div>
-    </nav>
+        </Button>
+
+        <Box sx={{ flexGrow: 1, display: 'flex', gap: 1 }}>
+          <Button
+            component={Link}
+            to="/"
+            sx={{
+              color: location.pathname === '/' ? theme.palette.navigation.active : theme.palette.navigation.text,
+              fontWeight: location.pathname === '/' ? 700 : 500,
+              '&:hover': {
+                backgroundColor: theme.palette.navigation.hover,
+                color: theme.palette.navigation.active,
+              },
+            }}
+          >
+            <FormattedMessage id="navigation.newPosts" />
+          </Button>
+          <Button
+            component={Link}
+            to="/top"
+            sx={{
+              color: location.pathname === '/top' ? theme.palette.navigation.active : theme.palette.navigation.text,
+              fontWeight: location.pathname === '/top' ? 700 : 500,
+              '&:hover': {
+                backgroundColor: theme.palette.navigation.hover,
+                color: theme.palette.navigation.active,
+              },
+            }}
+          >
+            <FormattedMessage id="navigation.topPosts" />
+          </Button>
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <LanguageSelector />
+          <ThemeToggle />
+        </Box>
+      </Toolbar>
+    </AppBar>
   )
 }
 
