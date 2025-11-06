@@ -1,5 +1,5 @@
 {
-  "name": "Genesys HN V3.0",
+  "name": "Genesys",
   "version": "1.0.0",
   "description": "Genesys - Home Assignment",
   "type": "module",
@@ -23,8 +23,13 @@
   },
   "homepage": "https://github.com/tr-tb-dev/genesys_home_assigment#readme",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
     "@reduxjs/toolkit": "^2.10.1",
     "@vitejs/plugin-react": "^5.1.0",
+    "classnames": "^2.5.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-intl": "^7.1.14",

@@ -1,8 +1,8 @@
 export function makeActionCreator(type) {
-  const fn = payload => ({
+  const fn = (payload) => ({
     type,
-    payload
-  });
-  Object.defineProperty(fn, 'type', { value: type, writable: false });
-  return fn;
+    payload,
+  })
+  Object.defineProperty(fn, 'type', { value: type, writable: false })
+  return fn
 }

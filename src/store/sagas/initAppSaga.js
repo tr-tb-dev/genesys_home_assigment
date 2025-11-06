@@ -1,9 +1,9 @@
-import { call, takeLatest } from 'redux-saga/effects'
-import { initApp } from '../actions/appActions'
+import { takeLatest } from 'redux-saga/effects'
+import { initApp } from '@/store/actions/appActions'
 
 function* initializeApp() {
   try {
-    console.log('Saga is running');
+    yield console.log('Saga is running')
   } catch (error) {
     console.error('Error in initializeApp:', error)
   }

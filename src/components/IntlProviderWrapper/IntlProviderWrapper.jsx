@@ -1,8 +1,8 @@
 import { IntlProvider } from 'react-intl'
 import { useSelector } from 'react-redux'
-import { selectLanguage } from '../store/reducers/settings'
-import translationsEn from '../translations/translations-en.json'
-import translationsHu from '../translations/translations-hu.json'
+import { selectLanguage } from '@/store/reducers/settings'
+import translationsEn from '@/translations/translations-en.json'
+import translationsHu from '@/translations/translations-hu.json'
 
 const messages = {
   en: translationsEn,

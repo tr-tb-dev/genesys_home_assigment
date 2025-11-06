@@ -1,4 +1,4 @@
-import { setTheme, setLanguage } from './settings-actions'
+import { setTheme, setLanguage } from '@/store/reducers/settings/settings-actions'
 
 const initialState = {
   theme: 'light',

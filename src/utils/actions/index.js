@@ -1,1 +1,1 @@
-export { makeActionCreator } from './makeActionCreator'
+export { makeActionCreator } from '@/utils/actions/makeActionCreator'
