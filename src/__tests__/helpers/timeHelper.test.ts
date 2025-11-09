@@ -75,10 +75,7 @@ describe('timeHelper', () => {
       const now = Math.floor(Date.now() / Time.ONE_SECOND);
       const tenMinutesAgo = now - (10 * Time.ONE_MINUTE) / Time.ONE_SECOND;
       formatRelativeTime(tenMinutesAgo, mockIntl);
-      expect(mockIntl.formatMessage).toHaveBeenCalledWith(
-        { id: 'time.minutesAgo' },
-        { minutes: 10 }
-      );
+      expect(mockIntl.formatMessage).toHaveBeenCalledWith({ id: 'time.minutesAgo' }, { minutes: 10 });
     });
   });
 });
