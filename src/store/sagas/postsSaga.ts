@@ -13,7 +13,7 @@ import {
   updateNewPostItem,
   updateTopPostItem,
 } from '@/store/reducers/posts/posts-actions';
-import type { HNItem } from '@/types/hackernews';
+import type { HNItem, HNItemId } from '@/types/hackernews';
 import { paginateArray } from '@/helpers/paginationHelper';
 import { getErrorMessage } from '@/helpers/errorHelper';
 import { getPostsPerPage } from '@/helpers/configHelper';
@@ -23,7 +23,7 @@ const POSTS_PER_PAGE = getPostsPerPage();
 let newPostTasks: Task[] = [];
 let topPostTasks: Task[] = [];
 
-function createItemChannel(itemId: number): EventChannel<HNItem> {
+function createItemChannel(itemId: HNItemId): EventChannel<HNItem> {
   return eventChannel((emitter) => {
     const unsubscribe = hackernewsAPI.subscribeToItem(itemId, (item) => {
       if (item) {
@@ -42,7 +42,7 @@ function* handleFetchNewPosts(action: ReturnType<typeof fetchNewPosts>): Generat
     newPostTasks = [];
 
     const page = action.payload?.page || 1;
-    const allPostIds: number[] = yield call(hackernewsAPI.getNewPostIds);
+    const allPostIds: HNItemId[] = yield call(hackernewsAPI.getNewPostIds);
 
     const { paginatedItems: pagePostIds, totalPages } = paginateArray(allPostIds, page, POSTS_PER_PAGE);
 
@@ -78,7 +78,7 @@ function* handleFetchTopPosts(action: ReturnType<typeof fetchTopPosts>): Generat
     topPostTasks = [];
 
     const page = action.payload?.page || 1;
-    const allPostIds: number[] = yield call(hackernewsAPI.getTopPostIds);
+    const allPostIds: HNItemId[] = yield call(hackernewsAPI.getTopPostIds);
 
     const { paginatedItems: pagePostIds, totalPages } = paginateArray(allPostIds, page, POSTS_PER_PAGE);
 
@@ -106,7 +106,7 @@ function* handleFetchTopPosts(action: ReturnType<typeof fetchTopPosts>): Generat
   }
 }
 
-function* watchNewPostItem(itemId: number, index: number): Generator {
+function* watchNewPostItem(itemId: HNItemId, index: number): Generator {
   const channel: EventChannel<HNItem> = yield call(createItemChannel, itemId);
   try {
     while (true) {
@@ -118,7 +118,7 @@ function* watchNewPostItem(itemId: number, index: number): Generator {
   }
 }
 
-function* watchTopPostItem(itemId: number, index: number): Generator {
+function* watchTopPostItem(itemId: HNItemId, index: number): Generator {
   const channel: EventChannel<HNItem> = yield call(createItemChannel, itemId);
   try {
     while (true) {

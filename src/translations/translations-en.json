@@ -14,5 +14,10 @@
   "time.justNow": "just now",
   "time.minutesAgo": "{minutes, plural, one {# minute ago} other {# minutes ago}}",
   "time.hoursAgo": "{hours, plural, one {# hour ago} other {# hours ago}}",
-  "time.daysAgo": "{days, plural, one {# day ago} other {# days ago}}"
+  "time.daysAgo": "{days, plural, one {# day ago} other {# days ago}}",
+  "comments.back": "Back",
+  "comments.title": "Comments",
+  "comments.noComments": "No comments yet.",
+  "posts.noComments": "No Comments",
+  "posts.points": "points"
 }

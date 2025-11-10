@@ -9,10 +9,14 @@
   "notFound.goBack": "Vissza a főoldalra",
   "pagination.previous": "Előző",
   "pagination.next": "Következő",
-  "pagination.pageOf": "Oldal {current} / {total}",
   "settings.fontSize.toggle": "Betűméret váltása",
   "time.justNow": "épp most",
   "time.minutesAgo": "{minutes, plural, one {# perce} other {# perce}}",
   "time.hoursAgo": "{hours, plural, one {# órája} other {# órája}}",
-  "time.daysAgo": "{days, plural, one {# napja} other {# napja}}"
+  "time.daysAgo": "{days, plural, one {# napja} other {# napja}}",
+  "comments.back": "Vissza",
+  "comments.title": "Hozzászólások",
+  "comments.noComments": "Még nincsenek hozzászólások.",
+  "posts.noComments": "Nincs Komment",
+  "posts.points": "pont"
 }

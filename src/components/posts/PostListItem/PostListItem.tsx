@@ -1,6 +1,7 @@
 import { HNItem } from '@/types/hackernews';
 import { Box, Card, CardContent, Typography, Link, Chip } from '@mui/material';
-import { useIntl } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
+import { Link as RouterLink } from 'react-router-dom';
 import { formatRelativeTime } from '@/helpers/timeHelper';
 import { extractDomain } from '@/helpers/urlHelper';
 
@@ -42,7 +43,13 @@ function PostListItem({ item, rank }: PostListItemProps) {
               )}
             </Box>
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
-              {item.score !== undefined && <Chip label={`${item.score} points`} size="small" color="primary" />}
+              {item.score !== undefined && (
+                <Chip
+                  label={`${item.score} ${intl.formatMessage({ id: 'posts.points' })}`}
+                  size="small"
+                  color="primary"
+                />
+              )}
               {item.by && (
                 <Typography variant="body2" color="text.secondary">
                   by {item.by}
@@ -53,11 +60,20 @@ function PostListItem({ item, rank }: PostListItemProps) {
                   {formatRelativeTime(item.time, intl)}
                 </Typography>
               )}
-              {item.descendants !== undefined && (
-                <Typography variant="body2" color="text.secondary">
-                  {item.descendants} comments
-                </Typography>
-              )}
+              {item.descendants !== undefined &&
+                (item.descendants === 0 ? (
+                  <Typography variant="body2" color="primary">
+                    <FormattedMessage id="posts.noComments" />
+                  </Typography>
+                ) : (
+                  item.id && (
+                    <Link component={RouterLink} to={`/comments/${item.id}`} sx={{ textDecoration: 'none' }}>
+                      <Typography variant="body2" color="primary" sx={{ '&:hover': { textDecoration: 'underline' } }}>
+                        {item.descendants} comments
+                      </Typography>
+                    </Link>
+                  )
+                ))}
             </Box>
           </Box>
         </Box>

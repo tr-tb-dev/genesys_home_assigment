@@ -1,18 +1,28 @@
+export enum HNItemType {
+  Job = 'job',
+  Story = 'story',
+  Comment = 'comment',
+  Poll = 'poll',
+  PollOpt = 'pollopt',
+}
+
+export type HNItemId = number;
+
 export interface HNItem {
-  id: number;
+  id: HNItemId;
   deleted?: boolean;
-  type?: 'job' | 'story' | 'comment' | 'poll' | 'pollopt';
+  type?: HNItemType;
   by?: string;
   time?: number;
   text?: string;
   dead?: boolean;
-  parent?: number;
-  poll?: number;
-  kids?: number[];
+  parent?: HNItemId;
+  poll?: HNItemId;
+  kids?: HNItemId[];
   url?: string;
   score?: number;
   title?: string;
-  parts?: number[];
+  parts?: HNItemId[];
   descendants?: number;
 }
 
@@ -23,4 +33,11 @@ export interface PostsState {
   error: string | null;
   currentPage: number;
   totalPages: number;
+}
+
+export interface CommentsState {
+  items: Partial<HNItem>[];
+  loading: boolean;
+  error: string | null;
+  parentId: HNItemId | null;
 }

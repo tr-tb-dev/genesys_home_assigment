@@ -26,7 +26,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         <FormattedMessage id="pagination.previous" />
       </Button>
       <Typography variant="body1">
-        <FormattedMessage id="pagination.pageOf" values={{ current: currentPage, total: totalPages }} />
+        {currentPage} / {totalPages}
       </Typography>
       <Button variant="outlined" onClick={handleNext} disabled={currentPage === totalPages}>
         <FormattedMessage id="pagination.next" />

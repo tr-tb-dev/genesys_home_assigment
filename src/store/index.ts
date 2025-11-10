@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import settingsReducer from '@/store/reducers/settings/settings-reducer';
 import appReducer from '@/store/reducers/app/app-reducer';
 import postsReducer from '@/store/reducers/posts/posts-reducer';
+import commentsReducer from '@/store/reducers/comments/comments-reducer';
 import rootSaga from '@/store/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -12,6 +13,7 @@ export const store = configureStore({
     app: appReducer,
     settings: settingsReducer,
     posts: postsReducer,
+    comments: commentsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
