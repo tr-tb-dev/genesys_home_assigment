@@ -40,6 +40,7 @@ export default defineConfig(({ mode }) => {
         provider: 'v8',
         reporter: ['text', 'html', 'lcov', 'json'],
         reportsDirectory: './coverage',
+        include: ['src/**/*.{ts,tsx}'],
         exclude: [
           'node_modules/**',
           'dist/**',
@@ -55,6 +56,7 @@ export default defineConfig(({ mode }) => {
           '**/*.config.{js,ts}',
           '**/mockData/**',
         ],
+        all: true,
       },
     },
   };
