@@ -62,12 +62,17 @@ function PostListItem({ item, rank }: PostListItemProps) {
               )}
               {item.descendants !== undefined &&
                 (item.descendants === 0 ? (
-                  <Typography variant="body2" color="primary">
+                  <Typography variant="body2" color="primary" data-testid="post-no-comments">
                     <FormattedMessage id="posts.noComments" />
                   </Typography>
                 ) : (
                   item.id && (
-                    <Link component={RouterLink} to={`/comments/${item.id}`} sx={{ textDecoration: 'none' }}>
+                    <Link
+                      component={RouterLink}
+                      to={`/comments/${item.id}`}
+                      sx={{ textDecoration: 'none' }}
+                      data-testid="post-comments-link"
+                    >
                       <Typography variant="body2" color="primary" sx={{ '&:hover': { textDecoration: 'underline' } }}>
                         {item.descendants} comments
                       </Typography>
