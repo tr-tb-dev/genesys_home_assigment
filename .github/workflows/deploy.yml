@@ -163,8 +163,43 @@ jobs:
           name: e2e-report-html
           path: playwright-report/
 
-      - name: Output E2E Test Results
-        if: always()
+  update-pages-with-e2e:
+    name: Update Pages with E2E Report
+    runs-on: ubuntu-latest
+    needs: [deploy, e2e-test]
+    if: always()
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Download built site
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./site
+
+      - name: Extract site artifact
         run: |
-          echo "🧪 E2E Tests completed"
-          echo "📊 Report available in artifacts"
+          mkdir -p dist
+          tar -xf site/artifact.tar -C dist
+
+      - name: Download E2E report
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-report-html
+          path: ./dist/e2e
+        continue-on-error: true
+
+      - name: Upload updated artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Output URLs
+        run: |
+          echo "📊 E2E Report URL: ${{ steps.deployment.outputs.page_url }}e2e/"
