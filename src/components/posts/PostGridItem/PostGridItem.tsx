@@ -14,7 +14,7 @@ function PostGridItem({ item, rank }: PostGridItemProps) {
   const intl = useIntl();
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} data-testid="post-grid-item" role="article" aria-label={`Post: ${item.title}`}>
       <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 1 }}>
           <Typography variant="h6" color="text.secondary" sx={{ minWidth: '30px' }}>

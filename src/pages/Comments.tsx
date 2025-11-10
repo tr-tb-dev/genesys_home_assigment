@@ -37,8 +37,8 @@ function CommentItem({ item, allComments, depth = 0 }: CommentItemProps) {
   }
 
   return (
-    <Box marginLeft={depth * 3}>
-      <Card sx={{ marginBottom: 2 }}>
+    <Box marginLeft={depth * 3} role="article" aria-label={`Comment by ${item.by || 'user'}`}>
+      <Card sx={{ marginBottom: 2 }} data-testid="comment-item">
         <CardContent>
           <Box display="flex" gap={2} marginBottom={1}>
             {item.by && (
@@ -93,7 +93,7 @@ function Comments() {
 
   return (
     <Box maxWidth="1200px" margin="0 auto" padding={3}>
-      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate(-1)} sx={{ marginBottom: 2 }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate(-1)} sx={{ marginBottom: 2 }} aria-label="Go back">
         <FormattedMessage id="comments.back" />
       </Button>
 
@@ -102,8 +102,8 @@ function Comments() {
       </Typography>
 
       {loading && (
-        <Box display="flex" justifyContent="center" marginY={4}>
-          <CircularProgress />
+        <Box display="flex" justifyContent="center" marginY={4} role="status" aria-live="polite">
+          <CircularProgress aria-label="Loading comments" />
         </Box>
       )}
 
@@ -120,11 +120,11 @@ function Comments() {
       )}
 
       {!loading && topLevelComments.length > 0 && (
-        <>
+        <Box role="list" aria-label="Comments list">
           {topLevelComments.map((comment) => (
             <CommentItem key={comment.id} item={comment} allComments={comments} />
           ))}
-        </>
+        </Box>
       )}
     </Box>
   );

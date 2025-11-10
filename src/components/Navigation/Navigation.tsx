@@ -14,6 +14,8 @@ function Navigation() {
   return (
     <AppBar
       position="static"
+      component="nav"
+      aria-label="Main navigation"
       sx={{
         backgroundColor: theme.palette.navigation.background,
         borderBottom: `2px solid ${theme.palette.navigation.active}`,
@@ -24,6 +26,7 @@ function Navigation() {
           component={Link}
           to="/"
           variant="outlined"
+          aria-label="Hacker News Home"
           sx={{
             fontWeight: 'bold',
             fontSize: '1.25rem',
@@ -40,6 +43,7 @@ function Navigation() {
           <Button
             component={Link}
             to="/"
+            aria-current={location.pathname === '/' ? 'page' : undefined}
             sx={{
               color: location.pathname === '/' ? theme.palette.navigation.active : theme.palette.navigation.text,
               fontWeight: location.pathname === '/' ? 700 : 500,
@@ -54,6 +58,7 @@ function Navigation() {
           <Button
             component={Link}
             to="/top"
+            aria-current={location.pathname === '/top' ? 'page' : undefined}
             sx={{
               color: location.pathname === '/top' ? theme.palette.navigation.active : theme.palette.navigation.text,
               fontWeight: location.pathname === '/top' ? 700 : 500,
@@ -67,7 +72,7 @@ function Navigation() {
           </Button>
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }} aria-label="Settings">
           <ViewModeToggle />
           <FontSizeToggle />
           <LanguageSelector />

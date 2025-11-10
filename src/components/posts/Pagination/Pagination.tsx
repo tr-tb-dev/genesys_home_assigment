@@ -21,14 +21,19 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, my: 3 }}>
-      <Button variant="outlined" onClick={handlePrevious} disabled={currentPage === 1}>
+    <Box
+      component="nav"
+      role="navigation"
+      aria-label="Pagination"
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, my: 3 }}
+    >
+      <Button variant="outlined" onClick={handlePrevious} disabled={currentPage === 1} aria-label="Previous page">
         <FormattedMessage id="pagination.previous" />
       </Button>
-      <Typography variant="body1">
+      <Typography variant="body1" aria-label={`Current page ${currentPage}`} aria-live="polite">
         {currentPage} / {totalPages}
       </Typography>
-      <Button variant="outlined" onClick={handleNext} disabled={currentPage === totalPages}>
+      <Button variant="outlined" onClick={handleNext} disabled={currentPage === totalPages} aria-label="Next page">
         <FormattedMessage id="pagination.next" />
       </Button>
     </Box>

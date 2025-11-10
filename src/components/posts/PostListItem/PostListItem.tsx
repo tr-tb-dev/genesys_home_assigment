@@ -14,7 +14,7 @@ function PostListItem({ item, rank }: PostListItemProps) {
   const intl = useIntl();
 
   return (
-    <Card sx={{ mb: 2 }}>
+    <Card sx={{ mb: 2 }} data-testid="post-list-item" role="article" aria-label={`Post: ${item.title}`}>
       <CardContent>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Typography variant="h6" color="text.secondary" sx={{ minWidth: '30px' }}>
