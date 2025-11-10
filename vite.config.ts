@@ -36,16 +36,25 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       setupFiles: './vitest.setup.ts',
       include: ['src/**/__tests__/**/*.test.{ts,tsx}'],
-      pool: 'threads',
-      poolOptions: {
-        threads: {
-          singleThread: true,
-        },
-      },
       coverage: {
         provider: 'v8',
-        reporter: ['text', 'json', 'html'],
-        exclude: ['node_modules/', 'src/**/*.d.ts', 'src/main.tsx', 'src/vite-env.d.ts'],
+        reporter: ['text', 'html', 'lcov', 'json'],
+        reportsDirectory: './coverage',
+        exclude: [
+          'node_modules/**',
+          'dist/**',
+          'coverage/**',
+          'src/**/*.d.ts',
+          'src/main.tsx',
+          'src/vite-env.d.ts',
+          'src/**/__tests__/**',
+          'src/**/*.test.{ts,tsx}',
+          'src/**/*.spec.{ts,tsx}',
+          'src/types/**',
+          'src/enums/**',
+          '**/*.config.{js,ts}',
+          '**/mockData/**',
+        ],
       },
     },
   };
