@@ -148,6 +148,16 @@ jobs:
           echo "Testing URL: ${{ needs.deploy.outputs.page_url }}"
           echo "PLAYWRIGHT_BASE_URL will be set to: ${{ needs.deploy.outputs.page_url }}"
 
+      - name: Test both URLs
+        run: |
+          echo "Testing URL with trailing slash: ${{ needs.deploy.outputs.page_url }}"
+          curl -I ${{ needs.deploy.outputs.page_url }} || echo "Failed with trailing slash"
+
+          URL_WITHOUT_SLASH="${{ needs.deploy.outputs.page_url }}"
+          URL_WITHOUT_SLASH="${URL_WITHOUT_SLASH%/}"
+          echo "Testing URL without trailing slash: $URL_WITHOUT_SLASH"
+          curl -I "$URL_WITHOUT_SLASH" || echo "Failed without trailing slash"
+
       - name: Run E2E tests on production
         run: npm run test:e2e
         env:
