@@ -27,13 +27,13 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
       aria-label="Pagination"
       sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, my: 3 }}
     >
-      <Button variant="outlined" onClick={handlePrevious} disabled={currentPage === 1} aria-label="Previous page">
+      <Button variant="outlined" onClick={handlePrevious} disabled={currentPage === 1} aria-label="Previous page" data-testid="pagination-previous">
         <FormattedMessage id="pagination.previous" />
       </Button>
       <Typography variant="body1" aria-label={`Current page ${currentPage}`} aria-live="polite">
         {currentPage} / {totalPages}
       </Typography>
-      <Button variant="outlined" onClick={handleNext} disabled={currentPage === totalPages} aria-label="Next page">
+      <Button variant="outlined" onClick={handleNext} disabled={currentPage === totalPages} aria-label="Next page" data-testid="pagination-next">
         <FormattedMessage id="pagination.next" />
       </Button>
     </Box>
