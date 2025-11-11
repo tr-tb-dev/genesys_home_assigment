@@ -24,7 +24,9 @@ test.describe('Home Page', () => {
   });
 
   test('should navigate to post comments from top page', async ({ page }) => {
-    await page.goto(getUrl('/top'));
+    await page.goto(getUrl('/'));
+
+    await page.click('[data-testid="nav-top-posts"]');
 
     await page.waitForSelector('[data-testid="post-list-item"], [data-testid="post-grid-item"]', {
       timeout: 30000,

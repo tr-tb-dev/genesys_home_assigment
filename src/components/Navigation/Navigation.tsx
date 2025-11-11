@@ -43,6 +43,7 @@ function Navigation() {
           <Button
             component={Link}
             to="/"
+            data-testid="nav-new-posts"
             aria-current={location.pathname === '/' ? 'page' : undefined}
             sx={{
               color: location.pathname === '/' ? theme.palette.navigation.active : theme.palette.navigation.text,
@@ -58,6 +59,7 @@ function Navigation() {
           <Button
             component={Link}
             to="/top"
+            data-testid="nav-top-posts"
             aria-current={location.pathname === '/top' ? 'page' : undefined}
             sx={{
               color: location.pathname === '/top' ? theme.palette.navigation.active : theme.palette.navigation.text,
