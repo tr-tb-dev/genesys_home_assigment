@@ -22,6 +22,7 @@ declare module '@mui/material/styles' {
 
 export const createLightTheme = (fontSize: FontSize): Theme =>
   createTheme({
+    spacing: 10,
     palette: {
       mode: 'light',
       primary: {
@@ -49,10 +50,24 @@ export const createLightTheme = (fontSize: FontSize): Theme =>
       fontFamily: '"Roboto Mono", "Courier New", monospace',
       fontSize: fontSize,
     },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          a: {
+            color: '#1976d2',
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          },
+        },
+      },
+    },
   });
 
 export const createDarkTheme = (fontSize: FontSize): Theme =>
   createTheme({
+    spacing: 10,
     palette: {
       mode: 'dark',
       primary: {
@@ -79,5 +94,18 @@ export const createDarkTheme = (fontSize: FontSize): Theme =>
     typography: {
       fontFamily: '"Roboto Mono", "Courier New", monospace',
       fontSize: fontSize,
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          a: {
+            color: '#00e676',
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          },
+        },
+      },
     },
   });

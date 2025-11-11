@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -22,6 +22,17 @@ interface CommentItemProps {
 
 function CommentItem({ item, allComments, depth = 0 }: CommentItemProps) {
   const intl = useIntl();
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const links = contentRef.current.querySelectorAll('a');
+      links.forEach((link) => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    }
+  }, [item.text]);
 
   const childComments = useMemo(() => {
     if (!item.kids || item.kids.length === 0) {
@@ -37,7 +48,7 @@ function CommentItem({ item, allComments, depth = 0 }: CommentItemProps) {
   }
 
   return (
-    <Box marginLeft={depth * 3} role="article" aria-label={`Comment by ${item.by || 'user'}`}>
+    <Box marginLeft={depth * 0.8} role="article" aria-label={`Comment by ${item.by || 'user'}`}>
       <Card sx={{ marginBottom: 2 }} data-testid="comment-item">
         <CardContent>
           <Box display="flex" gap={2} marginBottom={1}>
@@ -58,7 +69,14 @@ function CommentItem({ item, allComments, depth = 0 }: CommentItemProps) {
               [deleted]
             </Typography>
           ) : (
-            item.text && <Typography variant="body2" component="div" dangerouslySetInnerHTML={{ __html: item.text }} />
+            item.text && (
+              <Typography
+                ref={contentRef}
+                variant="body2"
+                component="div"
+                dangerouslySetInnerHTML={{ __html: item.text }}
+              />
+            )
           )}
         </CardContent>
       </Card>

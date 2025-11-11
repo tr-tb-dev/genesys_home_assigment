@@ -13,7 +13,7 @@ function Navigation() {
 
   return (
     <AppBar
-      position="static"
+      position="fixed"
       component="nav"
       aria-label="Main navigation"
       sx={{
