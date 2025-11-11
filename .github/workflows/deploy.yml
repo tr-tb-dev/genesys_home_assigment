@@ -191,6 +191,11 @@ jobs:
           path: ./dist/e2e
         continue-on-error: true
 
+      - name: Delete old artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: github-pages
+
       - name: Upload updated artifact
         uses: actions/upload-pages-artifact@v3
         with:
