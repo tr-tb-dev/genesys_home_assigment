@@ -1,5 +1,5 @@
 {
-  "name": "genesys-homeassesment",
+  "name": "hacker-news-react",
   "version": "1.0.0",
   "description": "Modernized Hacker News with React and Redux Saga",
   "type": "module",
