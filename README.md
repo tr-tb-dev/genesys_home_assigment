@@ -22,7 +22,7 @@
 
 # Technical stack
 
-- React, Redux, Redux-Saga
+- React, Redux, Redux-Saga, Tanstack - React
 - Typescript
 - react-intl Internationalization support
 - E2E testing with Playwright with demonstrational purposes
