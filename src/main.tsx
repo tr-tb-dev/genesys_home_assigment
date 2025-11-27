@@ -27,7 +27,7 @@ ReactDOM.createRoot(rootElement).render(
           </IntlProviderWrapper>
         </MuiThemeProvider>
       </Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   </React.StrictMode>
 );

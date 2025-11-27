@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '@/components/Layout/Layout';
-import NewPosts from '@/pages/NewPosts';
-import TopPosts from '@/pages/TopPosts';
-import Comments from '@/pages/Comments';
+import NewPostsWrapper from '@/pages/NewPostsWrapper';
+import TopPostsWrapper from '@/pages/TopPostsWrapper';
+import CommentsWrapper from '@/pages/CommentsWrapper';
 import NotFound from '@/pages/NotFound';
 
 export const router = createBrowserRouter(
@@ -13,15 +13,15 @@ export const router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <NewPosts />,
+          element: <NewPostsWrapper />,
         },
         {
           path: 'top',
-          element: <TopPosts />,
+          element: <TopPostsWrapper />,
         },
         {
           path: 'comments/:postId',
-          element: <Comments />,
+          element: <CommentsWrapper />,
         },
       ],
     },
